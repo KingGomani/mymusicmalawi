@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* General styles */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f0eded;
@@ -55,7 +54,6 @@
             height: auto;
         }
 
-        /* Restored search styles */
         #search-container {
             position: fixed;
             top: 100px;
@@ -88,11 +86,6 @@
             font-size: 14px;
         }
 
-        .search-form input[type="text"]:focus {
-            background-color: #fff;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        }
-
         .search-form button {
             padding: 10px;
             border: none;
@@ -100,12 +93,6 @@
             background: linear-gradient(45deg, #333, #555);
             color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .search-form button:hover {
-            background-color: #777;
         }
 
         .audio-list {
@@ -131,32 +118,11 @@
             margin-right: 15px;
         }
 
-        .audio-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .audio-details {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .audio-title {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .audio-description {
-            font-size: 14px;
-            color: #555;
-        }
-
         .audio-actions {
             display: flex;
             align-items: center;
         }
 
-        /* Play Button Styling */
         .play-btn {
             display: flex;
             align-items: center;
@@ -169,15 +135,9 @@
             color: #fff;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease;
             font-size: 18px;
         }
 
-        .play-btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Download Link Styling */
         .download-link {
             display: inline-block;
             padding: 8px 15px;
@@ -187,11 +147,6 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .download-link:hover {
-            background-color: #555;
         }
 
         #current-audio {
@@ -207,13 +162,7 @@
             align-items: center;
         }
 
-        #current-audio .play-btn {
-            background: none;
-            border: none;
-            color: #fff;
-        }
-
-        /* Trending and ranking */
+        /* Trending */
         .rank-number {
             font-size: 16px;
             font-weight: bold;
@@ -232,7 +181,6 @@
             width: fit-content;
         }
 
-        /* Scroll Buttons */
         .scroll-btn {
             position: fixed;
             right: 20px;
@@ -244,20 +192,10 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
-            transition: background-color 0.3s ease;
         }
 
-        .scroll-btn:hover {
-            background-color: #555;
-        }
-
-        #scroll-up {
-            bottom: 110px;
-        }
-
-        #scroll-down {
-            bottom: 65px;
-        }
+        #scroll-up { bottom: 110px; }
+        #scroll-down { bottom: 65px; }
     </style>
 
 </head>
@@ -277,7 +215,7 @@
     </div>
 </header>
 
-<!-- Search Container -->
+<!-- Search -->
 <div id="search-container">
     <form class="search-form" onsubmit="return false;">
         <input type="text" id="search" placeholder="Search audios..." onkeyup="filterAudios()">
@@ -288,10 +226,9 @@
 <!-- Audio List -->
 <ul id="audio-list" class="audio-list">
 
-    <!-- AUDIO 1 -->
-    <li class="audio-item" data-title="Amidu Ellani UDIKIREBE" data-description="This is the description of audio 3.">
+    <li class="audio-item" data-title="Amidu Ellani UDIKIREBE">
         <div class="audio-info">
-            <img class="audio-thumbnail" src="pic/artwork/12.jpg" loading="lazy" alt="audio3">
+            <img class="audio-thumbnail" src="pic/artwork/12.jpg">
             <div class="audio-details">
                 <div class="audio-title">Amidu Ellani UDIKIREBE</div>
                 <div class="rank-number"></div>
@@ -299,19 +236,19 @@
                 <div class="audio-description">single</div>
             </div>
         </div>
+
         <div class="audio-actions">
-            <audio id="audio3" src="audio/Amidu Ellani UDIKIREBE.mp3"></audio>
-            <button class="play-btn" onclick="toggleAudio('audio3', this)">
+            <audio src="audio/Amidu Ellani UDIKIREBE.mp3"></audio>
+            <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/Amidu Ellani UDIKIREBE.mp3" download="Amidu_Ellani_UDIKIREBE.mp3" class="download-link">Download</a>
+            <a href="audio/Amidu Ellani UDIKIREBE.mp3" download class="download-link">Download</a>
         </div>
     </li>
 
-    <!-- AUDIO 2 -->
-    <li class="audio-item" data-title="Namadingo & Gwamba ft Temwah & Lawi Mumapemphero" data-description="This is the description of audio 2.">
+    <li class="audio-item" data-title="Namadingo & Gwamba ft Temwah & Lawi Mumapemphero">
         <div class="audio-info">
-            <img class="audio-thumbnail" src="pic/artwork/13.jpg" loading="lazy" alt="audio2">
+            <img class="audio-thumbnail" src="pic/artwork/13.jpg">
             <div class="audio-details">
                 <div class="audio-title">Namadingo & Gwamba ft Temwah & Lawi Mumapemphero</div>
                 <div class="rank-number"></div>
@@ -319,19 +256,19 @@
                 <div class="audio-description">single</div>
             </div>
         </div>
+
         <div class="audio-actions">
-            <audio id="audio2" src="audio/Namadingo & Gwamba ft. Temwah & Lawi - Mumapemphero.mp3"></audio>
-            <button class="play-btn" onclick="toggleAudio('audio2', this)">
+            <audio src="audio/Namadingo & Gwamba ft. Temwah & Lawi - Mumapemphero.mp3"></audio>
+            <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/Namadingo & Gwamba ft. Temwah & Lawi - Mumapemphero.mp3" download="Namadingo_Gwamba_Mumapemphero.mp3" class="download-link">Download</a>
+            <a href="audio/Namadingo & Gwamba ft. Temwah & Lawi - Mumapemphero.mp3" download class="download-link">Download</a>
         </div>
     </li>
 
-    <!-- AUDIO 3 -->
-    <li class="audio-item" data-title="Namadingo - Mmmh Mmm Mmmh" data-description="This is the description of audio 1.">
+    <li class="audio-item" data-title="Namadingo - Mmmh Mmm Mmmh">
         <div class="audio-info">
-            <img class="audio-thumbnail" src="pic/artwork/14.jpg" loading="lazy" alt="audio1">
+            <img class="audio-thumbnail" src="pic/artwork/14.jpg">
             <div class="audio-details">
                 <div class="audio-title">Namadingo - Mmmh Mmm Mmmh</div>
                 <div class="rank-number"></div>
@@ -339,44 +276,53 @@
                 <div class="audio-description">single</div>
             </div>
         </div>
+
         <div class="audio-actions">
-            <audio id="audio1" src="audio/Namadingo - Mmmh Mmm Mmmh.mp3"></audio>
-            <button class="play-btn" onclick="toggleAudio('audio1', this)">
+            <audio src="audio/Namadingo - Mmmh Mmm Mmmh.mp3"></audio>
+            <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/Namadingo - Mmmh Mmm Mmmh.mp3" download="Namadingo_Mmmh.mp3" class="download-link">Download</a>
+            <a href="audio/Namadingo - Mmmh Mmm Mmmh.mp3" download class="download-link">Download</a>
         </div>
     </li>
-	<li class="audio-item" data-title="Song number 2" data-description="This is the description of audio 2.">
+	
+	<li class="audio-item" data-title="Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water">
         <div class="audio-info">
-            <img class="audio-thumbnail" src="pic/artwork/15.jpg" alt="audio2">
+            <img class="audio-thumbnail" src="pic/artwork/15.jpg">
             <div class="audio-details">
                 <div class="audio-title">Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water</div>
+                <div class="rank-number"></div>
+                <div class="trending-badge">🔥 Trending</div>
                 <div class="audio-description">single</div>
             </div>
         </div>
+
         <div class="audio-actions">
-            <audio id="audio2" src="audio/bbbb.mp3"></audio>
-            <button class="play-btn" onclick="toggleAudio('audio2', this)">
+            <audio src="audio/Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water.mp3"></audio>
+            <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/aaaa.mp3" download class="download-link">Download</a>
+            <a href="audio/Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water.mp3" download class="download-link">Download</a>
         </div>
     </li>
-    <li class="audio-item" data-title="Song number 1" data-description="This is the description of audio 1.">
+	
+	<li class="audio-item" data-title="Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters">
         <div class="audio-info">
-            <img class="audio-thumbnail" src="pic/artwork/16.jpg" alt="audio1">
+            <img class="audio-thumbnail" src="pic/artwork/16.jpg">
             <div class="audio-details">
                 <div class="audio-title">Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters</div>
+                <div class="rank-number"></div>
+                <div class="trending-badge">🔥 Trending</div>
                 <div class="audio-description">single</div>
             </div>
         </div>
+
         <div class="audio-actions">
-            <audio id="audio1" src="audio/aaaa.mp3"></audio>
-            <button class="play-btn" onclick="toggleAudio('audio1', this)">
+            <audio src="audio/Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters.mp3"></audio>
+            <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/aaaa.mp3" download class="download-link">Download</a>
+            <a href="audio/Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters.mp3" download class="download-link">Download</a>
         </div>
     </li>
 
@@ -389,211 +335,143 @@
     </button>
 </div>
 
-<!-- Scroll Buttons -->
 <button id="scroll-up" class="scroll-btn" onclick="scrollUp()">↑</button>
 <button id="scroll-down" class="scroll-btn" onclick="scrollDown()">↓</button>
 
 <script>
 
-    /* your original script code unchanged up to here */
+let currentAudio = null;
 
-    let currentAudio = null;
-
-    let stats = JSON.parse(localStorage.getItem("audioStats")) || {};
-
-    document.querySelectorAll(".audio-item").forEach(item => {
-        const title = item.getAttribute("data-title");
-        if (!stats[title]) {
-            stats[title] = { plays: 0, downloads: 0, weekly: { plays: 0, downloads: 0 } };
-        }
+/* ----------------------------------
+   FILTER AUDIO
+---------------------------------- */
+function filterAudios() {
+    const input = document.getElementById('search').value.toLowerCase();
+    const audioItems = document.querySelectorAll('.audio-item');
+    audioItems.forEach(item => {
+        const title = item.getAttribute('data-title').toLowerCase();
+        item.style.display = title.includes(input) ? '' : 'none';
     });
+}
 
-    function saveStats() {
-        localStorage.setItem("audioStats", JSON.stringify(stats));
+/* ----------------------------------
+   SCROLL BUTTONS
+---------------------------------- */
+function scrollUp() { window.scrollBy(0, -200); }
+function scrollDown() { window.scrollBy(0, 200); }
+
+/* ----------------------------------
+   PLAY / PAUSE LOGIC
+---------------------------------- */
+function toggleAudio(audioElement, buttonElement) {
+
+    if (currentAudio && currentAudio !== audioElement) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        document.querySelectorAll(".play-btn i").forEach(i =>
+            i.classList.replace("fa-pause", "fa-play")
+        );
     }
 
-    Date.prototype.getWeekNumber = function() {
-        const firstJan = new Date(this.getFullYear(), 0, 1);
-        return Math.ceil((((this - firstJan) / 86400000) + firstJan.getDay() + 1) / 7);
-    };
+    currentAudio = audioElement;
 
-    let currentWeek = new Date().getWeekNumber();
-    let lastWeek = localStorage.getItem("lastWeek");
+    let title = audioElement.parentElement.parentElement.querySelector(".audio-title").textContent;
 
-    if (currentWeek != lastWeek) {
-        for (let t in stats) {
-            stats[t].weekly = { plays: 0, downloads: 0 };
-        }
-        localStorage.setItem("lastWeek", currentWeek);
-        saveStats();
+    saveLastPlayedTitle(title);
+
+    if (audioElement.paused) {
+        audioElement.play();
+        buttonElement.querySelector("i").classList.replace("fa-play","fa-pause");
+        document.getElementById("current-audio-title").textContent = "Currently Playing: " + title;
+        document.getElementById("current-audio-icon").classList.replace("fa-play", "fa-pause");
+    } else {
+        audioElement.pause();
+        buttonElement.querySelector("i").classList.replace("fa-pause","fa-play");
+        document.getElementById("current-audio-icon").classList.replace("fa-pause", "fa-play");
     }
+}
 
-    function sortAudios() {
-        const list = document.getElementById("audio-list");
-        const items = Array.from(list.children);
+/* =====================================================
+   AUTO PLAY NEXT BASED ON LAST PLAYED SONG TITLE
+   ===================================================== */
 
-        items.sort((a, b) => {
-            const t1 = a.getAttribute("data-title");
-            const t2 = b.getAttribute("data-title");
-            const s1 = (stats[t1].plays || 0) + (stats[t1].downloads || 0);
-            const s2 = (stats[t2].plays || 0) + (stats[t2].downloads || 0);
-            return s2 - s1;
-        });
+function saveLastPlayedTitle(title) {
+    localStorage.setItem("lastPlayedTitle", title);
+}
 
-        items.forEach(i => list.appendChild(i));
-    }
+function getLastPlayedTitle() {
+    return localStorage.getItem("lastPlayedTitle");
+}
 
-    function updateTrendingAndRanking() {
-        const items = document.querySelectorAll(".audio-item");
-        items.forEach((item, index) => {
-            const title = item.getAttribute("data-title");
-            const weeklyScore = (stats[title].weekly.plays || 0) + (stats[title].weekly.downloads || 0);
-            item.querySelector(".rank-number").textContent = "#" + (index + 1);
-            item.querySelector(".trending-badge").style.display = weeklyScore >= 10 ? "inline-block" : "none";
-        });
-    }
+function getAllAudioItems() {
+    return Array.from(document.querySelectorAll(".audio-item"));
+}
 
-    sortAudios();
-    updateTrendingAndRanking();
+let audioElements = Array.from(document.querySelectorAll(".audio-item audio"));
 
-    function toggleAudio(audioId, button) {
-        const audioElement = document.getElementById(audioId);
-        if (!audioElement) return;
+/* NEXT SONG WHEN ONE ENDS */
+audioElements.forEach((audio, index) => {
+    audio.addEventListener("ended", () => {
+        let items = getAllAudioItems();
 
-        if (currentAudio && currentAudio !== audioElement) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            document.querySelectorAll(".play-btn i").forEach(i => {
-                i.classList.remove("fa-pause");
-                i.classList.add("fa-play");
-            });
-        }
+        let nextIndex = index + 1;
+        if (nextIndex >= items.length) nextIndex = 0;
 
-        currentAudio = audioElement;
+        let nextAudio = items[nextIndex].querySelector("audio");
+        let nextTitle = items[nextIndex].querySelector(".audio-title").textContent;
 
-        const title = audioElement.parentElement.parentElement.querySelector(".audio-title").textContent;
+        saveLastPlayedTitle(nextTitle);
 
-        if (audioElement.paused) {
-            audioElement.play();
-            button.querySelector("i").classList.replace("fa-play","fa-pause");
+        nextAudio.play();
 
-            stats[title].plays++;
-            stats[title].weekly.plays++;
-            saveStats();
+        document.querySelectorAll(".play-btn i").forEach(i =>
+            i.classList.replace("fa-pause", "fa-play")
+        );
 
-            sortAudios();
-            updateTrendingAndRanking();
+        let btn = nextAudio.parentElement.querySelector(".play-btn i");
+        btn.classList.replace("fa-play", "fa-pause");
 
-            document.getElementById('current-audio-title').textContent = `Currently Playing: ${title}`;
-            document.getElementById('current-audio-icon').classList.replace('fa-play','fa-pause');
-
-        } else {
-            audioElement.pause();
-            button.querySelector("i").classList.replace("fa-pause","fa-play");
-
-            document.getElementById('current-audio-icon').classList.replace('fa-pause','fa-play');
-        }
-    }
-
-    function toggleCurrentAudio() {
-        if (currentAudio) {
-            if (currentAudio.paused) {
-                currentAudio.play();
-                document.getElementById('current-audio-icon').classList.replace('fa-play','fa-pause');
-            } else {
-                currentAudio.pause();
-                document.getElementById('current-audio-icon').classList.replace('fa-pause','fa-play');
-            }
-        }
-    }
-
-    document.querySelectorAll(".download-link").forEach(link => {
-        link.addEventListener("click", () => {
-            const title = link.parentElement.parentElement.querySelector(".audio-title").textContent;
-            stats[title].downloads++;
-            stats[title].weekly.downloads++;
-            saveStats();
-            sortAudios();
-            updateTrendingAndRanking();
-        });
+        document.getElementById("current-audio-title").textContent =
+            "Currently Playing: " + nextTitle;
+        document.getElementById("current-audio-icon").classList.replace("fa-play", "fa-pause");
     });
+});
 
-    function filterAudios() {
-        const input = document.getElementById('search').value.toLowerCase();
-        const audioItems = document.querySelectorAll('.audio-item');
-        audioItems.forEach(item => {
-            const title = item.getAttribute('data-title').toLowerCase();
-            const description = item.getAttribute('data-description').toLowerCase();
-            item.style.display = (title.includes(input) || description.includes(input)) ? '' : 'none';
-        });
+/* AUTO START LAST PLAYED WHEN PAGE LOADS */
+window.addEventListener("load", () => {
+    let lastTitle = getLastPlayedTitle();
+    if (!lastTitle) return;
+
+    let items = getAllAudioItems();
+    let found = items.find(item =>
+        item.querySelector(".audio-title").textContent === lastTitle
+    );
+
+    if (found) {
+        let audio = found.querySelector("audio");
+        let btn = found.querySelector(".play-btn i");
+        audio.play();
+        btn.classList.replace("fa-play", "fa-pause");
+
+        document.getElementById("current-audio-title").textContent =
+            "Currently Playing: " + lastTitle;
+        document.getElementById("current-audio-icon").classList.replace("fa-play", "fa-pause");
     }
+});
 
-    function scrollUp() {
-        window.scrollBy(0, -200);
+/* CONTROL VIA BOTTOM PLAYER */
+function toggleCurrentAudio() {
+    if (!currentAudio) return;
+    if (currentAudio.paused) {
+        currentAudio.play();
+        document.getElementById("current-audio-icon").classList.replace("fa-play", "fa-pause");
+    } else {
+        currentAudio.pause();
+        document.getElementById("current-audio-icon").classList.replace("fa-pause", "fa-play");
     }
-
-    function scrollDown() {
-        window.scrollBy(0, 200);
-    }
-
-    /* ==================================================
-       AUTO PLAY NEXT SONG (DATA ANALYTICS)
-       ================================================== */
-
-    function saveLastPlayed(index) {
-        localStorage.setItem("lastPlayedIndex", index);
-    }
-
-    function getLastPlayed() {
-        return parseInt(localStorage.getItem("lastPlayedIndex")) || 0;
-    }
-
-    const audioItemsList = Array.from(document.querySelectorAll(".audio-item"));
-    let audioElements = audioItemsList.map(item => item.querySelector("audio"));
-
-    audioElements.forEach((audio, index) => {
-        audio.addEventListener("ended", () => {
-
-            let nextIndex = index + 1;
-            if (nextIndex >= audioElements.length) nextIndex = 0;
-
-            saveLastPlayed(nextIndex);
-
-            let nextAudio = audioElements[nextIndex];
-            if (nextAudio) {
-
-                nextAudio.play();
-
-                document.querySelectorAll(".play-btn i").forEach(i => {
-                    i.classList.replace("fa-pause","fa-play");
-                });
-
-                let btn = nextAudio.parentElement.querySelector(".play-btn i");
-                btn.classList.replace("fa-play","fa-pause");
-
-                let title = nextAudio.parentElement.parentElement.querySelector(".audio-title").textContent;
-                document.getElementById('current-audio-title').textContent = `Currently Playing: ${title}`;
-                document.getElementById('current-audio-icon').classList.replace('fa-play','fa-pause');
-            }
-        });
-    });
-
-    window.addEventListener("load", () => {
-        let lastIndex = getLastPlayed();
-        let lastAudio = audioElements[lastIndex];
-
-        if (lastAudio) {
-            lastAudio.play();
-
-            let btn = lastAudio.parentElement.querySelector(".play-btn i");
-            btn.classList.replace("fa-play","fa-pause");
-
-            let title = lastAudio.parentElement.parentElement.querySelector(".audio-title").textContent;
-            document.getElementById('current-audio-title').textContent = `Currently Playing: ${title}`;
-            document.getElementById('current-audio-icon').classList.replace('fa-play','fa-pause');
-        }
-    });
+}
 
 </script>
+
 </body>
 </html>
