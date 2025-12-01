@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download & Play Graph - My Music Malawi</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .back-btn {
+            display: block;
+            margin: 20px auto;
+            width: 200px;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>Music Download & Play Graph</header>
+
+<div class="container">
+    <h2 style="text-align:center;">Live Analytics</h2>
+
+    <canvas id="downloadChart"></canvas>
+
+    <a href="index.html" class="back-btn">⬅ Back to Home</a>
+</div>
+
+<script>
+
+    let chart; // global chart
+
+    function loadStats() {
+        let stats = JSON.parse(localStorage.getItem("audioStats")) || {};
+
+        let titles = [];
+        let downloads = [];
+        let plays = [];
+
+        for (let title in stats) {
+            titles.push(title);
+            downloads.push(stats[title].downloads || 0);
+            plays.push(stats[title].plays || 0);
+        }
+
+        return { titles, downloads, plays };
+    }
+
+    function createGraph() {
+        const ctx = document.getElementById('downloadChart').getContext('2d');
+        const data = loadStats();
+
+        chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.titles,
+                datasets: [
+                    {
+                        label: 'Downloads',
+                        data: data.downloads,
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Plays',
+                        data: data.plays,
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                animation: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    function updateGraph() {
+        const data = loadStats();
+
+        chart.data.labels = data.titles;
+        chart.data.datasets[0].data = data.downloads; // update downloads
+        chart.data.datasets[1].data = data.plays;     // update plays
+        chart.update();
+    }
+
+    // Create graph on load
+    createGraph();
+
+    // Update when localStorage changes in another tab
+    window.addEventListener("storage", updateGraph);
+
+    // Auto-update every 3 seconds
+    setInterval(updateGraph, 3000);
+
+</script>
+
+</body>
+</html>

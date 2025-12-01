@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-adsense-account" content="ca-pub-9956121859043174">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Music Malawi</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #28a745; /* Green color */
+            --text-color-light: white;
+            --text-color-dark: #555;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 60px; /* Space for fixed navbar */
+        }
+
+        /* Simple Navigation Bar */
+        .navbar {
+            background-color: #000; /* Black color */
+            padding: 10px 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .logo img {
+            height: 50px; /* Adjust the logo size as needed */
+            width: auto;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            text-transform: uppercase;
+            font-size: 0.9rem; /* Reduced text size */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #218838;
+            border-radius: 5px;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://example.com/hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.3));
+            z-index: -1;
+        }
+
+        .hero h3 {
+            font-size: 5vw; /* Adjusts based on viewport width */
+            color: var(--text-color-light);
+            animation: fadeInDown 2s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-color-light);
+            margin-top: 20px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .hero .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color); /* Green button */
+            color: var(--text-color-light);
+            padding: 15px 30px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .hero .cta-button:hover {
+            background-color: #218838; /* Darker green */
+            transform: scale(1.05);
+        }
+
+        .hero .additional-cta {
+            display: inline-block;
+            background-color: #007bff; /* Blue color */
+            color: var(--text-color-light);
+            padding: 15px 30px;
+            margin-top: 10px; /* Space between buttons */
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .hero .additional-cta:hover {
+            background-color: #0056b3; /* Darker blue */
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color); /* Green footer */
+            color: var(--text-color-light);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h3 {
+                font-size: 4rem; /* Adjust text size on tablets and smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar ul li {
+                margin-bottom: 10px;
+            }
+
+            .hero h3 {
+                font-size: 3rem; /* Adjust text size */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h3 {
+                font-size: 2.5rem; /* More adjustments for mobile */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Simple Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/logo/LOGO.png" alt="Logo"> <!-- Replace the source with the actual logo file path -->
+        </div>
+        <ul>
+            <li><a href="audios.html">AUDIOS</a></li>
+            <li><a href="new audios.html">NEW</a></li>
+            <li><a href="contact.html" class="button">contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div>
+            <h3>My Music Malawi</h3>
+            <p>HOME OF ENTERTAINMENT</p>
+            <a href="audios.html" class="cta-button">AUDIOS</a>
+			<a href="Downloads Graph.html"class="cta-button">Downloads</a>
+
+        </div>
+    </section>
+
+   
+</body>
+</html>
