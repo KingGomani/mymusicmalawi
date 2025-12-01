@@ -285,8 +285,8 @@
             <a href="audio/Namadingo - Mmmh Mmm Mmmh.mp3" download class="download-link">Download</a>
         </div>
     </li>
-	
-	<li class="audio-item" data-title="Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water">
+
+    <li class="audio-item" data-title="Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water">
         <div class="audio-info">
             <img class="audio-thumbnail" src="pic/artwork/15.jpg">
             <div class="audio-details">
@@ -298,15 +298,15 @@
         </div>
 
         <div class="audio-actions">
-            <audio src="audio/bbbb.mp3"></audio>
+            <audio src="audio/Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water.mp3"></audio>
             <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/bbbb.mp3" download class="download-link">Download</a>
+            <a href="audio/Kell Kay x Aidfest & Kineo Ft Kambwiri sisters Holy water.mp3" download class="download-link">Download</a>
         </div>
     </li>
-	
-	<li class="audio-item" data-title="Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters">
+
+    <li class="audio-item" data-title="Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters">
         <div class="audio-info">
             <img class="audio-thumbnail" src="pic/artwork/16.jpg">
             <div class="audio-details">
@@ -318,11 +318,11 @@
         </div>
 
         <div class="audio-actions">
-            <audio src="audio/aaaa.mp3"></audio>
+            <audio src="audio/Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters.mp3"></audio>
             <button class="play-btn" onclick="toggleAudio(this.previousElementSibling, this)">
                 <i class="fas fa-play"></i>
             </button>
-            <a href="audio/aaaa.mp3" download class="download-link">Download</a>
+            <a href="audio/Gwamba Mukadalitsa feat Praise Umali & Kambwiri Sisters.mp3" download class="download-link">Download</a>
         </div>
     </li>
 
@@ -340,11 +340,56 @@
 
 <script>
 
+/* ------------------------------------------------------
+   PLAY COUNT + SORTING + TRENDING SYSTEM
+------------------------------------------------------ */
+
+function getPlayCount(title) {
+    return parseInt(localStorage.getItem("playcount_" + title)) || 0;
+}
+
+function increasePlayCount(title) {
+    let count = getPlayCount(title) + 1;
+    localStorage.setItem("playcount_" + title, count);
+}
+
+function applyRankingAndTrending() {
+    let items = Array.from(document.querySelectorAll(".audio-item"));
+    let ranked = items.map(item => {
+        let title = item.querySelector(".audio-title").textContent;
+        let playCount = getPlayCount(title);
+        return { item, playCount };
+    });
+
+    ranked.sort((a, b) => b.playCount - a.playCount);
+
+    let list = document.getElementById("audio-list");
+    list.innerHTML = "";
+
+    ranked.forEach((entry, index) => {
+        let title = entry.item.querySelector(".audio-title").textContent;
+        let playCount = entry.playCount;
+
+        entry.item.querySelector(".rank-number").textContent =
+            playCount > 0 ? `Plays: ${playCount}` : "";
+
+        let badge = entry.item.querySelector(".trending-badge");
+        badge.style.display = (index < 2 && playCount > 0) ? "block" : "none";
+
+        list.appendChild(entry.item);
+    });
+}
+
+window.addEventListener("load", applyRankingAndTrending);
+
+
+/* ---------------------------------------------------------
+   ORIGINAL FUNCTIONS BELOW (UNCHANGED)
+--------------------------------------------------------- */
+
 let currentAudio = null;
 
-/* ----------------------------------
-   FILTER AUDIO
----------------------------------- */
+/* FILTER AUDIO */
 function filterAudios() {
     const input = document.getElementById('search').value.toLowerCase();
     const audioItems = document.querySelectorAll('.audio-item');
@@ -354,15 +399,11 @@ function filterAudios() {
     });
 }
 
-/* ----------------------------------
-   SCROLL BUTTONS
----------------------------------- */
+/* SCROLL BUTTONS */
 function scrollUp() { window.scrollBy(0, -200); }
 function scrollDown() { window.scrollBy(0, 200); }
 
-/* ----------------------------------
-   PLAY / PAUSE LOGIC
----------------------------------- */
+/* PLAY / PAUSE */
 function toggleAudio(audioElement, buttonElement) {
 
     if (currentAudio && currentAudio !== audioElement) {
@@ -379,6 +420,10 @@ function toggleAudio(audioElement, buttonElement) {
 
     saveLastPlayedTitle(title);
 
+    /* NEW LINES ADDED */
+    increasePlayCount(title);
+    applyRankingAndTrending();
+
     if (audioElement.paused) {
         audioElement.play();
         buttonElement.querySelector("i").classList.replace("fa-play","fa-pause");
@@ -391,10 +436,7 @@ function toggleAudio(audioElement, buttonElement) {
     }
 }
 
-/* =====================================================
-   AUTO PLAY NEXT BASED ON LAST PLAYED SONG TITLE
-   ===================================================== */
-
+/* LAST PLAYED SYSTEM */
 function saveLastPlayedTitle(title) {
     localStorage.setItem("lastPlayedTitle", title);
 }
@@ -409,7 +451,6 @@ function getAllAudioItems() {
 
 let audioElements = Array.from(document.querySelectorAll(".audio-item audio"));
 
-/* NEXT SONG WHEN ONE ENDS */
 audioElements.forEach((audio, index) => {
     audio.addEventListener("ended", () => {
         let items = getAllAudioItems();
@@ -437,7 +478,6 @@ audioElements.forEach((audio, index) => {
     });
 });
 
-/* AUTO START LAST PLAYED WHEN PAGE LOADS */
 window.addEventListener("load", () => {
     let lastTitle = getLastPlayedTitle();
     if (!lastTitle) return;
@@ -459,7 +499,7 @@ window.addEventListener("load", () => {
     }
 });
 
-/* CONTROL VIA BOTTOM PLAYER */
+/* BOTTOM PLAYER */
 function toggleCurrentAudio() {
     if (!currentAudio) return;
     if (currentAudio.paused) {
@@ -475,4 +515,3 @@ function toggleCurrentAudio() {
 
 </body>
 </html>
-
